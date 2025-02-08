@@ -1,0 +1,46 @@
+<div class="container">
+  <h2 class="page-title">Documents</h2>
+  <div class="actions">
+    <button class="btn-add" (click)="addDocument()">Add Document</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Publish Date</th>
+        <th>Expiry Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let document of documents">
+        <td>{{ document.id }}</td>
+        <td>{{ document.title }}</td>
+        <td>{{ document.publishDate | date : "dd/MM/yyyy" }}</td>
+        <td>{{ document.expiryDate | date : "dd/MM/yyyy" }}</td>
+        <td class="action-buttons">
+          <button class="btn-delete" (click)="deleteDocument(document.id)">
+            Delete
+          </button>
+          <button class="btn-update" (click)="editDocument(document.id)">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-update-document-modal
+  *ngIf="selectedDocument"
+  [documentToUpdate]="selectedDocument"
+  (updatedDocumentRequest)="onDocumentUpdated($event)"
+>
+</app-update-document-modal>
+
+<app-add-document-modal
+  (documentAdded)="onDocumentAdded($event)"
+></app-add-document-modal>
+
+<router-outlet />

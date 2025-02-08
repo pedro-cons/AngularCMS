@@ -1,0 +1,49 @@
+<div id="addDocumentModal" class="modal" style="display: none">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">×</span>
+    <h2>Add Document</h2>
+
+    <form (ngSubmit)="addDocument()">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="newDocument.title"
+        name="title"
+        required
+      />
+
+      <label for="publishDate">Publish Date</label>
+      <input
+        type="date"
+        id="publishDate"
+        [(ngModel)]="formattedPublishDate"
+        name="publishDate"
+        required
+      />
+
+      <label for="expiryDate">Expiry Date</label>
+      <input
+        type="date"
+        id="expiryDate"
+        [(ngModel)]="formattedExpiryDate"
+        name="expiryDate"
+        required
+      />
+
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        [(ngModel)]="newDocument.content"
+        name="content"
+        required
+        rows="4"
+        placeholder="Enter the document content"
+      ></textarea>
+
+      <button type="submit">Add Document</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeModal()"></div>

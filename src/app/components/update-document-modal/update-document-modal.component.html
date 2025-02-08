@@ -1,0 +1,47 @@
+<div id="updateDocumentModal" class="modal" style="display: block">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">×</span>
+    <h2>Edit Document</h2>
+
+    <form (ngSubmit)="updateDocument()">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="documentToUpdate.title"
+        name="title"
+        required
+      />
+
+      <label for="publishDate">Publish Date</label>
+      <input
+        type="date"
+        id="publishDate"
+        [(ngModel)]="formattedPublishDate"
+        name="publishDate"
+        required
+      />
+
+      <label for="expiryDate">Expiry Date</label>
+      <input
+        type="date"
+        id="expiryDate"
+        [(ngModel)]="formattedExpiryDate"
+        name="expiryDate"
+        required
+      />
+
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        [(ngModel)]="documentToUpdate.content"
+        name="content"
+        required
+      ></textarea>
+
+      <button type="submit">Update Document</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeModal()"></div>
