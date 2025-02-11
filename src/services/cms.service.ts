@@ -16,6 +16,7 @@ export class CmsService {
   private url = `${environment.api}`;
   public isRefreshing = false;
   public refreshTokenSubject = new BehaviorSubject<AuthResponse | null>(null);
+  public token: AuthResponse | null = null;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -34,16 +35,15 @@ export class CmsService {
   }
 
   getStoredToken(): AuthResponse | null {
-    const token = localStorage.getItem('authToken');
-    return token ? JSON.parse(token) : null;
+    return this.token;
   }
 
   storeToken(token: AuthResponse): void {
-    localStorage.setItem('authToken', JSON.stringify(token));
+    this.token = token;
   }
 
   removeToken(): void {
-    localStorage.removeItem('authToken');
+    this.token = null;
   }
 
   getAllNoContentDocument(): Observable<DocumentNoContentResponse[]> {
